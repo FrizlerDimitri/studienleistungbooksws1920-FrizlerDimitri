@@ -1,0 +1,28 @@
+extends layout.pug
+
+block title
+     title Register
+     
+block content
+      div(class="p-2")
+         div(class="form-control")
+            div(class="Registerheader text-center") 
+                h2 Sign up and join the My Book Store Community!
+            form(action="/register" method="post")
+                 div(class="py-2")
+                    div(class="col-lg-11 col-md-1 p-1")
+                        input(class ="form-control" type="text" name="reg_name", id="reg_name", placeholder="user", autocomplete="off" required)
+                        if Error_Reg_name
+                            div(class="alert alert-danger p-2" role="alert" ) #{Error_Reg_name}
+
+                 div(class="py-2")
+                    div(class="col-lg-11 col-md-1 p-1")
+                        input(class ="form-control" type="password" name="reg_password", id="reg_password" placeholder="password", autocomplete="off" required)
+                 div(class="py-2")
+                    div(class="col-lg-11 col-md-1 p-1")
+                        input(class ="form-control" type="password" required name="confirm_password", id="confirm_password" placeholder="confirm your password", autocomplete="off") 
+                        if Error_Reg_pw
+                            div(class="alert alert-danger p-2" role="alert" ) #{Error_Reg_pw}
+
+                    div(class="col-lg-1 col-md-12 p-1")
+                            button(type="submit" class="btn btn-dark" action="/register" method="post" ) Sign up

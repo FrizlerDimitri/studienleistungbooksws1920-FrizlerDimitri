@@ -1,0 +1,24 @@
+extends layout.pug
+
+block title
+     title Search
+     
+block content
+         div(class="p-2")
+            if result
+              div(class="form-control text-center") 
+                 h3 #{result}
+
+         ul(class="list-group p-2")
+            each _, i in searchedbooks
+                li(class="list-group-item")
+                  div(class="text-center")
+                      div Title: #{searchedbooks[i].title}
+                      div Author: #{searchedbooks[i].author}
+                      div Year: #{searchedbooks[i].year}
+                  div(class="text-center")
+                     form(action="/detail/"+searchedbooks[i].id_books method="post")
+                         input(type="hidden" value=searchedbooks[i].id_books name="book_id")
+                         button(type="submit" class="btn btn-dark" action="/detail/"+searchedbooks[i].id_books  method="post") Show details
+            else 
+                li(class="list-group-item") No such Books found!               

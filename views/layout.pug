@@ -1,0 +1,63 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    block title
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script(type="text/javascript" src="Scripts/jquery-2.1.1.min.js")
+    script(type="text/javascript" src="Scripts/bootstrap.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js")
+    script(type="text/javascript" src="https://www.google.com/books/jsapi.js")
+    script( type="text/javascript")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+    link(rel="stylesheet" href="/styles/star.css" type="text/css")
+        
+  body
+      div(class="container")
+           nav(class="navbar navbar-expand-sm navbar-inverse m-2 bg-dark navbar-dark")
+                 a(class="navbar-brand" href="#") 
+                    h1 My Book Store
+                 ul(class="navbar-nav ml-auto")
+                    li(class="nav-item")
+                        a(class="nav-link" href="http://localhost:3000/") Home  
+                    if !userID    
+                        div    
+                            li(class="nav-item dropdown")
+                               a(class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown") Log in
+                               div(class="dropdown-menu " aria-labelledby="dropdownMenu")
+                                  form(action="/" method="post" class="dropdown-item")
+                                           div(class="py-2")
+                                                label(for="user_name") 
+                                                input(type="text" name="user_name", id="user_name", placeholder="user", autocomplete="off" required)
+                                           div(class="py-2")
+                                                label(for="password") 
+                                                input(type="password" name="password", id="user_password" placeholder="password", autocomplete="off" required)
+                                           div
+                                                button(type="submit" class="btn btn-dark my-2" action="/" method="post") Log in
+                                  form(action="/Register" method="post" class="dropdown-item")
+                                                button(type="submit" class="btn btn-dark my-2" action="/Register" method="post") Register 
+                    else 
+                        li(class="nav-item dropdown")
+                               a(class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown") Hello @#{userID}
+                               div(class="dropdown-menu " aria-labelledby="dropdownMenu")
+                                  form(action="/logout" method="post" class="dropdown-item")
+                                      button(type="submit" class="btn btn-dark my-2" action="/logout" method="post") Log out
+           if login_error
+               div(class="alert alert-danger p-2" role="alert" ) #{login_error}
+           if INFO_SIGN
+               div(class="alert alert-success p-2" role="alert" ) #{INFO_SIGN}
+
+           div(class="p-2")                
+              form(action="/searchresult" method="post" class="form-control")
+                     div(class="row mx-2")
+                         div(class="col-md-11 col-sm-1 p-1")
+                            input(type="text" name="searchbar" placeholder="search by isbn\\title\\author" class="form-control")
+                         div(class="col-md-1 col-sm-12 p-1")
+                            button(type="submit" class="btn btn-dark" action="/searchresult" method="post") Search
+           block content
+           div(class="p-2")
+              div(class="footer form-control text-center p-2 bg-dark text-white")
+                 div Creat for the OTH Regensburg 

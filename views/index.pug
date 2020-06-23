@@ -1,0 +1,8 @@
+extends layout.pug
+
+block title
+     title My book Store
+block content
+     if !userID
+        div(class="p-2") 
+            div(class="alert alert-success p-2" role="alert" ) You need to be logged in to use all functions of this webside 

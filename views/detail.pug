@@ -1,0 +1,64 @@
+extends layout.pug
+
+block title
+     title Detail
+
+block content
+     div(class="p-2")
+         div(class="form-control")
+            div(class="row py-3 mx-2")
+                div(class="col-lg-3 col-md-12 my-1 text-center" )
+                    img(src=googlebookapi.thumbnail alt=googlebookapi.title height="200px" width="125px" )
+                    if userID        
+                            if avg > 0 
+                                if avg > 0 && avg <= 1 
+                                    div &#11088 ★ ★ ★ ★ 
+                                if avg > 1 && avg <= 2 
+                                    div &#11088 &#11088 ★ ★ ★
+                                if avg > 2 && avg <= 3 
+                                    div &#11088 &#11088 &#11088 ★ ★ 
+                                if avg > 3 && avg <= 4 
+                                    div &#11088 &#11088 &#11088 &#11088 ★ 
+                                if avg > 4
+                                    div &#11088 &#11088 &#11088 &#11088 &#11088 
+                    
+                div(class="col-lg-8 col-md-12 my-1 form-control")
+                    div(class="text-center") 
+                       h3 Description
+                    div(class="text-center") #{googlebookapi.description}
+                          
+            
+            div(class="row py-3 mx-2")
+                div(class="col-6 text-center")
+                    div Title: #{bookdata.title}
+                    div Isbn: #{bookdata.isbn}
+                div(class="col-6 text-center")
+                    div Author: #{bookdata.author}
+                    div Year: #{bookdata.year}
+         
+     if userID  
+         div(class="For_users p-2")
+            div(class="form-control")
+                div(class="form-group text-center")
+                    form(action = "/postCritic/"+bookdata.id_books type="post") Whats you opinion #{userID}? Make your own critic!
+                        div(class="py-2")
+                            button(action="/postCritic/"+bookdata.id_books type="submit" class="btn btn-dark") Post
+                            
+         if critic
+            each _, i in critic
+                div(class="critic p-2")
+                   div(class="form-control")
+                      div Posted by #{critic[i].user_name}
+                      
+                      if critic[i].rating==1 
+                        div &#11088 ★ ★ ★ ★ 
+                      if critic[i].rating==2 
+                        div &#11088 &#11088 ★ ★ ★
+                      if critic[i].rating==3 
+                        div &#11088 &#11088 &#11088 ★ ★ 
+                      if critic[i].rating==4 
+                        div &#11088 &#11088 &#11088 &#11088 ★ 
+                      if critic[i].rating==5 
+                        div &#11088 &#11088 &#11088 &#11088 &#11088                      
+                      
+                      div #{critic[i].text} 

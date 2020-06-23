@@ -1,0 +1,31 @@
+extends layout.pug
+
+block title
+     title Post Critic
+
+block content
+     div(class="p-2")
+     
+        if !allreadyPosted
+            div(class="form-control p-3") Share you opinion with the Community! Don't forget to rate!
+                div(class="py-2")
+                    form(action="/postCritic/"+id_book  name="postCritic" method="post")
+                        textarea(class="form-control" rows="10" name="Critic" required)
+                        div(class="form-group row")
+                            div(class="rate")
+                                input(type="radio" id="star5" name="rate" value="5" class="sr-only" required)
+                                label(for="star5" title="text">5 stars)
+                                input(type="radio" id="star4" name="rate" value="4" class="sr-only" required) 
+                                label(for="star4" title="text">4 stars)
+                                input(type="radio" id="star3" name="rate" value="3" class="sr-only" required) 
+                                label(for="star3" title="text">3 stars)
+                                input(type="radio" id="star2" name="rate" value="2" class="sr-only" required)
+                                label(for="star2" title="text">2 stars)
+                                input(type="radio" id="star1" name="rate" value="1" class="sr-only" required)
+                                label(for="star1" title="text">1 star)
+
+                            div(class="col pt-2")
+                                button(class="btn btn-dark" action="/postCritic/"+id_book  method="post") post
+
+        else 
+            div(class="form-control p-3") #{allreadyPosted} 
